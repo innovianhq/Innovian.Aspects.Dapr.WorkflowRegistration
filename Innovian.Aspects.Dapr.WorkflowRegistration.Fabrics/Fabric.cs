@@ -1,5 +1,6 @@
 ﻿using Metalama.Framework.Fabrics;
 using Metalama.Framework.Code;
+using Innovian.Aspects.Dapr.WorkflowRegistration;
 
 namespace Innovian.Aspects.Dapr.WorkflowRegistration.Fabrics;
 
