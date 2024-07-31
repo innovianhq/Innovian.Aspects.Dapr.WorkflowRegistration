@@ -6,4 +6,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Dapr.Workflow" Version="1.13.1" />
+    <PackageReference Include="Metalama.Framework" Version="2024.2.18" />
+    <PackageReference Include="Metalama.Testing.AspectTesting" Version="2024.2.18" />
+  </ItemGroup>
+
 </Project>
