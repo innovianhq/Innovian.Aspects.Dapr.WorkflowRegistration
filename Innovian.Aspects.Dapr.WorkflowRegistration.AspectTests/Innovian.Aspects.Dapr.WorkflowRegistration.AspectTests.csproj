@@ -25,7 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Innovian.Aspects.Dapr.WorkflowRegistration.Fabric\Innovian.Aspects.Dapr.WorkflowRegistration.Fabric.csproj" />
+    <ProjectReference Include="..\Innovian.Aspects.Dapr.WorkflowRegistration.Fabric\Innovian.Aspects.Dapr.WorkflowRegistration.Fabrics.csproj" />
   </ItemGroup>
 
   <ItemGroup>
