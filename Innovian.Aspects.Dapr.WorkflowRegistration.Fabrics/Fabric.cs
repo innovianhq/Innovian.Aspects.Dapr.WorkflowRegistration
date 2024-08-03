@@ -1,8 +1,7 @@
 ﻿using Metalama.Framework.Fabrics;
 using Metalama.Framework.Code;
-using Innovian.Aspects.Dapr.WorkflowRegistration;
 
-namespace Innovian.Aspects.Dapr.WorkflowRegistration.Fabrics;
+namespace Innovian.Aspects.Dapr.WorkflowRegistration.Fabric;
 
 public sealed class Fabric : TransitiveProjectFabric
 {
@@ -28,6 +27,6 @@ public sealed class Fabric : TransitiveProjectFabric
         //Works
         amender.SelectMany(c => c.Types)
             .Where(t => t.Name == "DaprRegistrationHelper")
-            .AddAspect(_ => new WorkflowRegistrationFactoryAttribute(workflowNames, workflowActivityNames));
+            .AddAspectIfEligible(_ => new WorkflowRegistrationFactoryAttribute(workflowNames, workflowActivityNames));
     }
 }
