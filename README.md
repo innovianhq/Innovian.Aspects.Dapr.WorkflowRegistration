@@ -57,3 +57,41 @@ From within Visual Studio:
 No additional effort is necessary beyond installation of the `Innovian.Aspects.Dapr.WorkflowRegistration.Fabric` package on the project to configure the fabric or the applied aspect. It will automatically identify all each of the 
 Workflow and Workflow Activities in the project, introduce the static type `DaprRegistrationHelper` and a static method called `RegisterAllEntities`. Because it's not yet possible to modify statements within a method at this time, registration is
 left as an exercise to the use of both the Dapr Workflow client and the Dapr Workflows (via the introduced static method).
+
+For example, let's say you've got a simple Program.cs and you want to register everything for Dapr. You'd start off with the following:
+```cs
+using Microsoft.AspNetCore.Builder;
+
+var builder = WebApplication.CreateBuilder(args);
+
+var app = builder.Build();
+
+app.MapGet("/", () => "Hello World!");
+
+app.Run();
+```
+
+And to register your Dapr workflows, simply update to reflect the following (note your namespace will likely vary based on your own Program.cs namespace):
+```cs
+using Dapr.Workflow;
+using DaprUtilities;
+using Microsoft.AspNetCore.Builder;
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDaprWorkflowClient();
+builder.Services.AddDaprWorkflow(DaprRegistrationHelper.RegisterAllEntities);
+
+var app = builder.Build();
+
+app.MapGet("/", () => "Hello World!");
+
+app.Run();
+```
+
+The `builder.Services.AddDaprWorkflowClient();` statement is required for typical Dapr Workflow client registration and is not impacted by this attribute, but is included for completeness.
+However, the following line `builder.Services.AddDaprWorkflow(DaprRegistrationHelper.RegisterAllEntities);` will not work until the aspect has been applied to your project as neither
+the `DaprRegistrationHelper` static class nor its internal method will necessarily already exist in your project. Rather, these will be introduced by the fabric and aspect and are
+invoked precisely as you see above as though you'd written them yourself. And that's it!
+
+Happy coding!
