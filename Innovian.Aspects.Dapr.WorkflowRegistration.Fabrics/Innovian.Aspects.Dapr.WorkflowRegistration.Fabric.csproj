@@ -7,7 +7,7 @@
 		<Product>Dapr Workflow Registration</Product>
 		<Company>Innovian</Company>
 		<Authors>Whit Waldo</Authors>
-		<Copyright>2024 Innovian Corporation</Copyright>
+		<Copyright>© 2024 Innovian Corporation</Copyright>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 		<PackageProjectUrl>https://github.com/innovianhq/Innovian.Aspects.Dapr.WorkflowRegistration</PackageProjectUrl>
