@@ -57,6 +57,11 @@ stages:
         packagesToPack: '**/$(ProjectName).csproj'
         versioningScheme: 'byEnvVar'
         versionEnvVar: 'BuildNumber'
+    - task: PublishBuildArtifacts@1
+      inputs:
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        ArtifactName: 'drop'
+        publishLocation: 'Container'
 - stage: Deployment
   dependsOn: Build
   jobs:
@@ -68,6 +73,11 @@ stages:
       demands: Agent.OS -equals Windows_NT
   - job:
     steps:
+    - task: DownloadBuildArtifacts@1
+      inputs:
+        buildType: 'current'
+        downloadType: 'specific'
+        downloadPath: '$(System.ArtifactStagingDirectory)'
     - task: NuGetCommand@2
       displayName: 'Push to NuGet.org'
       inputs:
