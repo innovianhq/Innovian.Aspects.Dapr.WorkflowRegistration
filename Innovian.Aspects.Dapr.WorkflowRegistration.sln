@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35027.167
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Innovian.Aspects.Dapr.WorkflowRegistration", "Innovian.Aspects.Dapr.WorkflowRegistration\Innovian.Aspects.Dapr.WorkflowRegistration.csproj", "{C3750641-C8A3-4648-A9D2-87B0DFE98550}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Innovian.Aspects.Dapr.WorkflowRegistration.AspectTests", "Innovian.Aspects.Dapr.WorkflowRegistration.AspectTests\Innovian.Aspects.Dapr.WorkflowRegistration.AspectTests.csproj", "{CB69055D-3C91-472A-A950-6489FA8B7582}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Innovian.Aspects.Dapr.WorkflowRegistration.Fabric", "Innovian.Aspects.Dapr.WorkflowRegistration.Fabrics\Innovian.Aspects.Dapr.WorkflowRegistration.Fabric.csproj", "{90C6BD17-FD88-4A89-A4AA-8C62B6A9FD93}"
@@ -15,10 +13,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{C3750641-C8A3-4648-A9D2-87B0DFE98550}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C3750641-C8A3-4648-A9D2-87B0DFE98550}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C3750641-C8A3-4648-A9D2-87B0DFE98550}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C3750641-C8A3-4648-A9D2-87B0DFE98550}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CB69055D-3C91-472A-A950-6489FA8B7582}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CB69055D-3C91-472A-A950-6489FA8B7582}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CB69055D-3C91-472A-A950-6489FA8B7582}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -22,10 +22,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\Innovian.Aspects.Dapr.WorkflowRegistration\Innovian.Aspects.Dapr.WorkflowRegistration.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<None Include="..\LICENSE" Pack="true" PackagePath="/"/>
 		<None Include="..\README.md" Pack="true" PackagePath="/"/>
 		<None Update="InnovianLogo_NugetIcon.png" Pack="true" PackagePath="\" />

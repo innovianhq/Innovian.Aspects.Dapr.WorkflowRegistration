@@ -4,7 +4,7 @@ using Metalama.Framework.Aspects;
 using Metalama.Framework.Code.SyntaxBuilders;
 using Metalama.Framework.Code;
 
-namespace Innovian.Aspects.Dapr.WorkflowRegistration;
+namespace Innovian.Aspects.Dapr.WorkflowRegistration.Fabric;
 
 public sealed class WorkflowRegistrationFactoryAttribute : TypeAspect
 {
