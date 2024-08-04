@@ -26,7 +26,8 @@ public sealed class Fabric : TransitiveProjectFabric
 
         //Works
         amender.SelectMany(c => c.Types)
-            .Where(t => t.Name == "DaprRegistrationHelper")
+            .Where(t => t is {TypeKind: TypeKind.Class, Name: "Program"})
             .AddAspectIfEligible(_ => new WorkflowRegistrationFactoryAttribute(workflowNames, workflowActivityNames));
+            
     }
 }
