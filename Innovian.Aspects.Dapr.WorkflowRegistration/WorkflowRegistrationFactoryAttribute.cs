@@ -28,10 +28,20 @@ public sealed class WorkflowRegistrationFactoryAttribute : TypeAspect
     public override void BuildAspect(IAspectBuilder<INamedType> builder)
     {
         base.BuildAspect(builder);
-        
+
+        var builderType = builder
+            .With(builder.Target.GetNamespace()!)
+            .WithChildNamespace("DaprUtilities")
+            .IntroduceClass("DaprRegistrationHelper", OverrideStrategy.Ignore, b =>
+            {
+                b.IsPartial = true;
+                b.IsStatic = true;
+                b.Accessibility = Accessibility.Public;
+            });
+
         var workflowRuntimeOptions = (INamedType)TypeFactory.GetType(typeof(WorkflowRuntimeOptions));
 
-        builder.IntroduceMethod(nameof(BuildMethodTemplate),
+        builderType.IntroduceMethod(nameof(BuildMethodTemplate),
             IntroductionScope.Static,
             buildMethod: b =>
             {
