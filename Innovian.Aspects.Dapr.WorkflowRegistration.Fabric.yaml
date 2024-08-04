@@ -81,6 +81,6 @@ stages:
         displayName: 'Push to NuGet.org'
         inputs:
           command: 'push'
-          packagesToPush: '$(Build.ArtifactsDirectory)/**/*.nupkg;!$(Build.ArtifactsDirectory)/**/*.symbols.nupkg'
+          packagesToPush: '$(System.ArtifactsDirectory)/**/*.nupkg;!$(System.ArtifactsDirectory)/**/*.symbols.nupkg'
           nuGetFeedType: 'external'
           publishFeedCredentials: 'InnovianNuget'
