@@ -1,0 +1,66 @@
+name: $(date:yyyy.MM.dd)$(rev:.r)
+
+trigger:
+  batch: true
+  branches: 
+    include: 
+      - main
+  paths:
+    include:
+      - /Innovian.Aspects.Dapr.WorkflowRegistration
+      - /Innovian.Aspects.Dapr.WorkflowRegistration.AspectTests
+
+pool: 
+  name: AzureBuildServers
+  demands: Agent.OS -equals Windows_NT
+
+workspace:
+  clean: all
+
+variables:
+  - name: BuildNumber
+    value: $(Build.BuildNumber)
+  - name: ProjectName
+    value: Innovian.Aspects.Dapr.WorkflowRegistration
+
+steps:
+- task: UseDotNet@2
+  inputs:
+    packageType: 'sdk'
+    version: '8.x'
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet restore'
+  inputs:
+    command: 'restore'
+    projects: '**/$(ProjectName).csproj'
+    noCache: true
+
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet build'
+  inputs:
+    command: 'build'
+    projects: '**/$(ProjectName).csproj'
+    arguments: '--no-restore'
+
+# Aspect testing
+# - task: DotNetCoreCLI@2
+#   displayName: 'dotnet test'
+#   inputs:
+#     command: 'test'
+#     projects: '**/$(ProjectName).Testing.csproj'
+
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet pack'
+  inputs:
+    command: 'pack'
+    packagesToPack: '**/$(ProjectName).csproj'
+    versioningScheme: 'byEnvVar'
+    versionEnvVar: 'BuildNumber'
+
+- task: NuGetCommand@2
+  displayName: 'Push to NuGet.org'
+  inputs:
+    command: 'push'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
+    nuGetFeedType: 'external'
+    publishFeedCredentials: 'InnovianNuget'
