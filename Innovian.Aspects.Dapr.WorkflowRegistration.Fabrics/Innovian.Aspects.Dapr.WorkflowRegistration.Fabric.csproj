@@ -4,6 +4,14 @@
 		<TargetFramework>net8.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
+		<Product>Dapr Workflow Registration</Product>
+		<Company>Innovian</Company>
+		<Authors>Whit Waldo</Authors>
+		<Copyright>2024 Innovian Corporation</Copyright>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageProjectUrl>https://github.com/innovianhq/Innovian.Aspects.Dapr.WorkflowRegistration</PackageProjectUrl>
+		<Description>A Metalama-based aspect fabric designed to simplify registration of Dapr Workflow and Workflow Activities at compilation time rather than using reflection at startup time.</Description>
+		<Tags>Metalama Dapr Workflow Aspects Innovian</Tags>
 	</PropertyGroup>
 
 	<ItemGroup>
