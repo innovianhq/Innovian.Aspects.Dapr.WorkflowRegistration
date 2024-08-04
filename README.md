@@ -5,7 +5,7 @@
 </a>
 
 #### Innovian.Aspets.Dapr.WorkflowRegistration
-[![Build Status](https://dev.azure.com/innovian/Innovian%20Open%20Source/_apis/build/status%2Finnovianhq.Innovian.Aspects.Dapr.WorkflowRegistration?branchName=main)](https://dev.azure.com/innovian/Innovian%20Open%20Source/_build/latest?definitionId=336&branchName=main) [![NuGet](https://img.shields.io/nuget/v/Innovian.Aspects.Dapr.WorkflowRegistration.svg)](https://www.nuget.org/packages/Innovian.Aspects.Dapr.WorkflowRegistration/)
+[![NuGet](https://img.shields.io/nuget/v/Innovian.Aspects.Dapr.WorkflowRegistration.svg)](https://www.nuget.org/packages/Innovian.Aspects.Dapr.WorkflowRegistration/)
 
 #### Innovian.Aspects.Dapr.WorkflowRegistration.Fabric
 [![Build Status](https://dev.azure.com/innovian/Innovian%20Open%20Source/_apis/build/status%2FMetalama%20Aspects%2FInnovian.Aspects.Dapr.WorkflowRegistration.Fabric?branchName=main)](https://dev.azure.com/innovian/Innovian%20Open%20Source/_build/latest?definitionId=337&branchName=main)  [![NuGet](https://img.shields.io/nuget/v/Innovian.Aspects.Dapr.WorkflowRegistration.Fabric.svg)](https://www.nuget.org/packages/Innovian.Aspects.Dapr.WorkflowRegistration.Fabric/)
