@@ -7,60 +7,11 @@ trigger:
       - main
   paths:
     include:
-      - /Innovian.Aspects.Dapr.WorkflowRegistration
       - /Innovian.Aspects.Dapr.WorkflowRegistration.AspectTests
       - /Innovian.Aspects.Dapr.WorkflowRegistration.Fabric
 stages:
 - stage: Build
   jobs:
-  - job: BuildAspect
-    displayName: "Build Workflow Registration Aspect"
-    workspace:
-      clean: outputs
-    pool: 
-      name: AzureBuildServers
-    variables:
-    - name: BuildNumber
-      value: $(Build.BuildNumber)
-    - name: ProjectName
-      value: Innovian.Aspects.Dapr.WorkflowRegistration
-    steps:
-    - task: UseDotNet@2
-      inputs:
-        packageType: 'sdk'
-        version: '8.x'
-    - task: DotNetCoreCLI@2
-      displayName: 'dotnet restore'
-      inputs:
-        command: 'restore'
-        projects: '**/$(ProjectName).csproj'
-        noCache: true
-    - task: DotNetCoreCLI@2
-      displayName: 'dotnet build'
-      inputs:
-        command: 'build'
-        projects: '**/$(ProjectName).csproj'
-        arguments: '--no-restore'
-
-    # Aspect testing
-    # - task: DotNetCoreCLI@2
-    #   displayName: 'dotnet test'
-    #   inputs:
-    #     command: 'test'
-    #     projects: '**/$(ProjectName).Testing.csproj'
-
-    - task: DotNetCoreCLI@2
-      displayName: 'dotnet pack'
-      inputs:
-        command: 'pack'
-        packagesToPack: '**/$(ProjectName).csproj'
-        versioningScheme: 'byEnvVar'
-        versionEnvVar: 'BuildNumber'
-    - task: PublishBuildArtifacts@1
-      inputs:
-        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-        ArtifactName: 'drop-aspect'
-        publishLocation: 'Container'
   - job: BuildAspectFabric
     displayName: "Build Workflow Registration Fabric"
     workspace:
@@ -118,21 +69,6 @@ stages:
     pool: 
       name: AzureBuildServers
       demands: Agent.OS -equals Windows_NT
-  - job:
-    steps:
-    - task: DownloadBuildArtifacts@1
-      inputs:
-        buildType: 'current'
-        downloadType: 'single'
-        artifactName: 'drop-aspect'
-        downloadPath: '$(System.ArtifactsDirectory)'
-    - task: NuGetCommand@2
-      displayName: 'Push to NuGet.org'
-      inputs:
-        command: 'push'
-        packagesToPush: '$(Build.ArtifactsDirectory)/**/*.nupkg;!$(Build.ArtifactsDirectory)/**/*.symbols.nupkg'
-        nuGetFeedType: 'external'
-        publishFeedCredentials: 'InnovianNuget'
   - job:
     steps:
       - task: DownloadBuildArtifacts@1
