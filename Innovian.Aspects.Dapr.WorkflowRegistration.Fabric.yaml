@@ -16,10 +16,9 @@ stages:
   - job: BuildAspect
     displayName: "Build Workflow Registration Aspect"
     workspace:
-      clean: all
+      clean: outputs
     pool: 
       name: AzureBuildServers
-      demands: Agent.OS -equals Windows_NT
     variables:
     - name: BuildNumber
       value: $(Build.BuildNumber)
@@ -65,10 +64,9 @@ stages:
   - job: BuildAspectFabric
     displayName: "Build Workflow Registration Fabric"
     workspace:
-      clean: all
+      clean: outputs
     pool: 
       name: AzureBuildServers
-      demands: Agent.OS -equals Windows_NT
     variables:
     - name: BuildNumber
       value: $(Build.BuildNumber)
