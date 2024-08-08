@@ -17,12 +17,12 @@ time, ensuring that all Workflow and Workflow Activities in the project are prop
 ## What does it do?
 
 The attribute performs the following:
-- Introduces a new class into the project with the namespace `<Program namespace>.DaprUtilities` where "<Program namespace>" is the namespace used in your Program.cs file within a public, partial, static class called `DaprRegistrationHelper`.
+- Introduces a new class into the project with the namespace `<Program namespace>.DaprUtilities` where `<Program namespace>` is the namespace used in your Program.cs file within a public, partial, static class called `DaprRegistrationHelper`.
 - Introduces a new method into this type named "DaprRegistrationHelper".
 - When provided with a list of Workflows and Workflow Activities from the Fabric, this will introduce a registration for each into the introduced method.
 
-
 ## Usage
+
 While a package is available on NuGet for the attribute itself, it's intended that the target developer only utilize the Fabric to apply this attribute. This is because it's the Fabric that locates the 
 Workflow and Workfow Activity types in the project and compiles them for the attribute to build the registration method in the target type. Applying the attribute directly to a `DaprRegistrationHelper` class
 will only introduce the `RegisterAllEntities` method, but will not actually register any of the Workflows or Workflow Activities.
