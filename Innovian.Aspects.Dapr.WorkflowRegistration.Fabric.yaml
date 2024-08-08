@@ -7,18 +7,17 @@ trigger:
       - main
   paths:
     include:
-      - /Innovian.Aspects.Dapr.WorkflowRegistration
       - /Innovian.Aspects.Dapr.WorkflowRegistration.AspectTests
       - /Innovian.Aspects.Dapr.WorkflowRegistration.Fabric
 stages:
 - stage: Build
   jobs:
-  - job:
+  - job: BuildAspectFabric
+    displayName: "Build Workflow Registration Fabric"
     workspace:
-      clean: all
+      clean: outputs
     pool: 
       name: AzureBuildServers
-      demands: Agent.OS -equals Windows_NT
     variables:
     - name: BuildNumber
       value: $(Build.BuildNumber)
@@ -35,7 +34,6 @@ stages:
         command: 'restore'
         projects: '**/$(ProjectName).csproj'
         noCache: true
-
     - task: DotNetCoreCLI@2
       displayName: 'dotnet build'
       inputs:
@@ -57,6 +55,11 @@ stages:
         packagesToPack: '**/$(ProjectName).csproj'
         versioningScheme: 'byEnvVar'
         versionEnvVar: 'BuildNumber'
+    - task: PublishBuildArtifacts@1
+      inputs:
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        ArtifactName: 'drop-fabric'
+        publishLocation: 'Container'    
 - stage: Deployment
   dependsOn: Build
   jobs:
@@ -68,10 +71,16 @@ stages:
       demands: Agent.OS -equals Windows_NT
   - job:
     steps:
-    - task: NuGetCommand@2
-      displayName: 'Push to NuGet.org'
-      inputs:
-        command: 'push'
-        packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
-        nuGetFeedType: 'external'
-        publishFeedCredentials: 'InnovianNuget'
+      - task: DownloadBuildArtifacts@1
+        inputs:
+          buildType: 'current'
+          downloadType: 'single'
+          artifactName: 'drop-fabric'
+          downloadPath: '$(System.ArtifactsDirectory)'
+      - task: NuGetCommand@2
+        displayName: 'Push to NuGet.org'
+        inputs:
+          command: 'push'
+          packagesToPush: '$(System.ArtifactsDirectory)/**/*.nupkg;!$(System.ArtifactsDirectory)/**/*.symbols.nupkg'
+          nuGetFeedType: 'external'
+          publishFeedCredentials: 'InnovianNuget'
